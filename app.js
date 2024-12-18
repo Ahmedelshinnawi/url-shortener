@@ -30,7 +30,7 @@ app.post("/shorten", async (req, res) => {
     url.save();
     res.redirect("/");
   } catch (err) {
-    console.log(err);
+    res.status(500).send("The URL is Invaild");
   }
 });
 
@@ -42,7 +42,7 @@ app.get("/:id", async (req, res) => {
 
     res.redirect(url.fullUrl);
   } catch (err) {
-    console.log(err);
+    res.status(500).send("URL Not Found");
   }
 });
 
