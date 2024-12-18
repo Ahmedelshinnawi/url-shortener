@@ -27,15 +27,12 @@ A URL shortener application to create concise links from long URLs.
 1. Clone the repository:
    ```bash
    git clone https://github.com/Ahmedelshinnawi/url-shortener.git
-   
 3. Navigate to the project directory
    ```
    cd url-shortener
-
 4. Install dependencies:
    ```bash
    npm install
-   
 3. Setup Database
     **Sign up for MongoDB free database cluster:**  [MongoDB](https://www.mongodb.com/)
   
@@ -47,13 +44,14 @@ A URL shortener application to create concise links from long URLs.
 5. Start the server:
     ```bash
     npm start
-
-
-
 ## API Endpoints:
 - **`GET`** /: Get a list of all the URLs saved in the database.
+
+  ### Redirect to Original URL
 - **`GET`** /:id: To go to a single URL from the database.
+  ### Create a Short URL
 - **`POST`** /shorten: To generate a short URL.
+
 
 
 
