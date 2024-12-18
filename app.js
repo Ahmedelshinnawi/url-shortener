@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const Url = require("./models/urlModel");
 
 const app = express();
 
@@ -12,8 +13,14 @@ const connectDB = async () => {
   const connect = await mongoose.connect(process.env.MONGODBURI);
   console.log(`MongoDB Connected: ${connect.connection.host}`);
 };
+
 app.get("/", async (req, res) => {
-  res.render("index");
+  try {
+    const urls = await Url.find();
+    res.render("index", { urls });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.listen(7000, () => {
