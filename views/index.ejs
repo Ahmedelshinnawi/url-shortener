@@ -4,29 +4,112 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Url Shortener</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap");
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: "Poppins", sans-serif;
+      }
+      .container {
+        max-width: 800px;
+        height: 58vh;
+        margin: 105px auto;
+        padding: 80px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      form {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 32px;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        background-color: #2e2e2e;
+        color: #e0e0e0;
+        font-size: 20px;
+        padding-right: 20px;
+      }
+      button {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 4px;
+        background-color: #6200ea;
+        color: #e0e0e0;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      button:hover {
+        background-color: #3700b3;
+        transition: ease-in-out 0.5s;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #333;
+        text-align: left;
+      }
+      th {
+        background-color: #333;
+      }
+      tr:nth-child(even) {
+        background-color: #2e2e2e;
+      }
+      tr:nth-child(odd) {
+        background-color: #1e1e1e;
+      }
+      a {
+        color: #ffffff;
+        text-decoration: none;
+        transition: ease-in-out 0.5s;
+      }
+      a:hover {
+        color: #bb86fc;
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
-    <form action="/shorten">
-      <label for="fullUrl">Url</label>
-      <input type="text" name="fullUrl" id="fullUrl" />
-      <button type="submit">Submit</button>
-    </form>
-    <table>
-      <thead>
-        <tr>
-          <th>Full Url</th>
-          <th>Short Url</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% urls.forEach(url =>{%>
-        <tr>
-          <td><a href="<%= url.fullUrl %>"><%= url.fullUrl %></a></td>
-
-          <td><a href="<%= url.shortUrl %>"><%= url.shortUrl %></a></td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
+    <div class="container">
+      <form action="/shorten" method="POST">
+        <label for="fullUrl">URL:</label>
+        <input
+          type="text"
+          name="fullUrl"
+          id="fullUrl"
+          placeholder="Enter URL"
+        />
+        <button type="submit">Submit</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Full Url</th>
+            <th>Short Url</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% urls.forEach(url =>{%>
+          <tr>
+            <td><a href="<%= url.fullUrl %>"><%= url.fullUrl %></a></td>
+            <td><a href="<%= url.shortUrl %>"><%= url.shortUrl %></a></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
