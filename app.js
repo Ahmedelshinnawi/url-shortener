@@ -19,6 +19,28 @@ app.get("/", async (req, res) => {
     const urls = await Url.find();
     res.render("index", { urls });
   } catch (err) {
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+app.post("/shorten", async (req, res) => {
+  try {
+    const url = await Url.create({ fullUrl: req.body.fullUrl });
+    url.save();
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/:id", async (req, res) => {
+  try {
+    const shortUrl = req.params.id;
+    const url = await Url.findOne({ shortUrl });
+    if (!url) return res.status(404).send("URL Not Found");
+
+    res.redirect(url.fullUrl);
+  } catch (err) {
     console.log(err);
   }
 });
